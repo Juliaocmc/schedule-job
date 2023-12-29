@@ -1,0 +1,48 @@
+export default {
+  tasks: [
+    {
+      service: 'Core-service',
+      cron: '0,25 * * * * *',
+      taskName: 'Rotina de charge back',
+      method: 'HTTP',
+      url: 'http://jst-core-service/',
+      path: 'charge-back',
+    },
+    {
+      service: 'Core-service',
+      cron: '5,30 * * * * *',
+      taskName: 'Reimportação de venda',
+      method: 'HTTP',
+      url: 'http://jst-core-service/',
+      path: 'import-sale',
+    },
+    {
+      service: 'Register-V2',
+      cron: '10,35 * * * * *',
+      taskName: 'Criar URs CERC',
+      method: 'SQS',
+      queue: 'REGISTER_UR_JOB',
+      key_id: 'AKIAWHHPMUD6AAAAAAA',
+      access_key: 'BQeqtg138jmkfq9w',
+      action: 'REGISTER_UR_JOB',
+    },
+    {
+      service: 'Register-V2',
+      cron: '15,40 * * * * *',
+      taskName: 'Criar Estabelecimento CERC',
+      method: 'SQS',
+      queue: 'REGISTER_ESTABLISHMENT_JOB',
+      key_id: 'AKIAWHHPMUD6AAAAAAA',
+      access_key: 'BQeqtg138jmkfq9w',
+      action: 'REGISTER_ESTABLISHMENT_JOB',
+    },
+    {
+      service: 'Pix-Cash-In',
+      cron: '20,50 * * * * *',
+      taskName: 'Reimporta venda Pix',
+      method: 'HTTP',
+      url: 'http://pix-cash-in-service/',
+      path: 'pix-retry',
+    },
+  ],
+};
